@@ -2,6 +2,7 @@ package com.gmv.vodafone;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Before;
@@ -15,7 +16,7 @@ public class OfertaDAOImplTest {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws OfertaException {
 		
 		List<Oferta> ofertas = dao.getOfertas();
 		
@@ -23,7 +24,7 @@ public class OfertaDAOImplTest {
 	}
 	
 	@Test
-	public void test2() {
+	public void test2() throws OfertaException {
 		
 		Oferta oferta = dao.getOferta(1);
 		
@@ -31,10 +32,18 @@ public class OfertaDAOImplTest {
 	}
 
 	@Test(expected=IllegalArgumentException.class)
-	public void test3() {
+	public void test3() throws OfertaException {
 		
 		dao.getOferta(5);
 		
+	}
+	
+	@Test
+	public void test4() throws OfertaException {
+		
+		LocalDate oferta = dao.getFecha(1);
+		
+		assertTrue(oferta!=null);
 	}
 	
 }
